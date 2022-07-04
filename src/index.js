@@ -1,5 +1,4 @@
-import * as React from "react";
-import ReactDOM from "react-dom";
+import { h, hydrate } from "preact"
 import App from "./App";
 
-ReactDOM.hydrate(<App />, document.getElementById("root"));
+hydrate(<App />, document.getElementById("root"));

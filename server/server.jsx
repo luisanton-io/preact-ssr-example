@@ -1,11 +1,10 @@
 import path from "path";
 import fs from "fs";
-
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import express from "express";
-
+import render from 'preact-render-to-string';
 import App from "../src/App";
+import express from "express";
+import { h } from 'preact';
+
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -20,14 +19,14 @@ app.get("/", (req, res) => {
     return res.send(
       data.replace(
         '<div id="root"></div>',
-        `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`
+        `<div id="root">${render(<App />)}</div>`
       )
     );
   });
 });
 
 app.use(
-  express.static(path.resolve(__dirname, ".", "dist"), { maxAge: "30d" })
+  express.static(path.resolve(__dirname, "..", "dist"), { maxAge: "30d" })
 );
 
 app.listen(PORT, () => {

@@ -3,19 +3,21 @@
   "version": "1.0.0",
   "description": "Node.js example server starter project",
   "scripts": {
-    "build:client": "esbuild src/index.js --bundle --outfile=dist/bundle.js --loader:.js=jsx",
-    "build:server": "esbuild server/server.jsx --bundle --outfile=build/server.js --platform=node",
+    "build:client": "esbuild src/index.js --bundle --outfile=dist/bundle.js --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment",
+    "build:server": "esbuild server/server.jsx --bundle --outfile=build/server.js --platform=node --jsx-factory=h --jsx-fragment=Fragment",
     "build": "npm run build:client && npm run build:server",
-    "start": "node ./build/server.js"
+    "start": "node ./build/server.js",
+    "dev": "nodemon --exec 'npm run build && npm run start' -e js,jsx --ignore build/* --ignore dist/*"
   },
   "dependencies": {
     "esbuild": "0.14.13",
     "express": "4.17.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "nodemon": "^2.0.18",
+    "preact": "^10.8.2",
+    "preact-render-to-string": "^5.2.0"
   },
   "devDependencies": {
-    "nodemon": "1.18.4"
+    "kill-port": "^2.0.1"
   },
   "keywords": []
 }
