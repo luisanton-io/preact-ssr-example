@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Node.js example server starter project",
   "scripts": {
-    "build:client": "esbuild src/index.js --bundle --outfile=dist/bundle.js --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment",
-    "build:server": "esbuild server/server.jsx --bundle --outfile=build/server.js --platform=node --jsx-factory=h --jsx-fragment=Fragment",
-    "build": "npm run build:client && npm run build:server",
+    "build": "node ./esbuild.js",
     "start": "node ./build/server.js",
     "dev": "nodemon --exec 'npm run build && npm run start' -e js,jsx --ignore build/* --ignore dist/*"
   },
